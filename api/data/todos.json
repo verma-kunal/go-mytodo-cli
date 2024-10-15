@@ -1,0 +1,20 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "owner": "John",
+      "title": "Finish the Go project",
+      "createdAt": "2024-10-15T10:00:00Z",
+      "updatedAt": "2024-10-15T10:00:00Z",
+      "isComplete": false
+    },
+    {
+      "id": 2,
+      "owner": "Jane",
+      "title": "Review PR",
+      "createdAt": "2024-10-15T11:00:00Z",
+      "updatedAt": "2024-10-15T11:00:00Z",
+      "isComplete": true
+    }
+  ]
+}
