@@ -11,7 +11,7 @@ func main() {
 	// routes
 	router.GET("/api/todos", handlers.GetTodos)
 	router.GET("/api/todos/:id", handlers.GetTodoById)
-	router.POST("/api/todos/:id", handlers.AddTodo)
+	router.POST("/api/todos", handlers.AddTodo)
 	router.PATCH("/api/todos/:id", handlers.UpdateTodo)
 	router.DELETE("/api/todos/:id", handlers.DeleteTodo)
 

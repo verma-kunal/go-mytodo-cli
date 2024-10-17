@@ -2,7 +2,6 @@ package handlers
 
 import (
 	"encoding/json"
-	"io"
 	"log"
 	"net/http"
 	"os"
@@ -31,17 +30,15 @@ func GetTodoById(c *gin.Context) {
 	// defer the closing of the file
 	defer jsonFile.Close()
 
-	// read the JSON file and convert to bytes
-	jsonToBytes, _ := io.ReadAll(jsonFile)
-
-	// unmarshall
+	// decode/unmarshal JSON to the Go struct
 	var todoList todoModel.Todos
-	json.Unmarshal(jsonToBytes, &todoList)
+	decoder := json.NewDecoder(jsonFile) // reads JSON from the file
+	decoder.Decode(&todoList) // converts JSON to Go struct (without first loading the entire JSON content into memory)
 
-	for _, todo := range todoList.Todos {
-		if todo.Id == todoId {
+	for _, todoItem := range todoList.Todos {
+		if todoItem.Id == todoId {
 			// if matching todo found, return it
-			c.JSON(http.StatusFound, todo)
+			c.JSON(http.StatusFound, todoItem)
 			return
 		}
 	}

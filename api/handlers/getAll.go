@@ -2,7 +2,6 @@ package handlers
 
 import (
 	"encoding/json"
-	"io"
 	"log"
 	"os"
 
@@ -20,13 +19,16 @@ func GetTodos(c *gin.Context) {
 	// defer the closing of the file
 	defer jsonFile.Close()
 
-	// read the JSON file and convert to bytes
-	jsonToBytes, _ := io.ReadAll(jsonFile)
+	// slice of todo items
+	var todoList todoModel.Todos
 
-	// variable (of type 'slice of Todo') to hold the unmarshalled json data
-	var todos todoModel.Todos
-	json.Unmarshal(jsonToBytes, &todos)
+	// decode/unmarshal the JSON file into Go struct
+	decoder := json.NewDecoder(jsonFile)
+	err = decoder.Decode(&todoList)
+	if err != nil {
+		log.Fatalf("error in decoding JSON file")
+	}
 
 	// return todos in response
-	c.JSON(200, todos)
+	c.JSON(200, todoList)
 }
