@@ -7,7 +7,7 @@ import (
 	"os"
 
 	"github.com/gin-gonic/gin"
-	todoModel "github.com/verma-kunal/go-mytodo/api"
+	todoModel "github.com/verma-kunal/go-mytodo/api/model"
 )
 
 func AddTodo(c *gin.Context) {

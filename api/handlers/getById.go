@@ -8,7 +8,7 @@ import (
 	"strconv"
 
 	"github.com/gin-gonic/gin"
-	todoModel "github.com/verma-kunal/go-mytodo/api"
+	todoModel "github.com/verma-kunal/go-mytodo/api/model"
 )
 
 func GetTodoById(c *gin.Context) {

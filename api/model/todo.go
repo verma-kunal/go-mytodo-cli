@@ -1,4 +1,4 @@
-package api
+package models
 
 // a slice of type Todo
 type Todos struct {

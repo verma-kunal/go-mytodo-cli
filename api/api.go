@@ -8,12 +8,13 @@ import (
 func main() {
 	router := gin.Default()
 
-	// routes
+	// Define routes with corresponding handlers
 	router.GET("/api/todos", handlers.GetTodos)
 	router.GET("/api/todos/:id", handlers.GetTodoById)
 	router.POST("/api/todos", handlers.AddTodo)
 	router.PATCH("/api/todos/:id", handlers.UpdateTodo)
 	router.DELETE("/api/todos/:id", handlers.DeleteTodo)
 
+	// Start the server
 	router.Run("localhost:8080")
 }
