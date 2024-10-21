@@ -19,5 +19,5 @@ func Execute() {
 	if err != nil {
 		log.Fatalf("error executing mytodo command")
 	}
-	os.Exit(1)
+	os.Exit(0)
 }

@@ -14,11 +14,6 @@
    "id": 3,
    "owner": "john",
    "title": "write Go tests"
-  },
-  {
-   "id": 5,
-   "owner": "kunal",
-   "title": "new todo"
   }
  ]
 }
