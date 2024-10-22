@@ -11,7 +11,8 @@
 
 ### Basic Architecture
 
-![architecture][static/architecture.png]
+![architecture](https://github.com/user-attachments/assets/bb7330c2-0a87-402b-b9be-3abdc167c4a7)
+
 
 ### Setting up
 
@@ -25,7 +26,8 @@
     ./bin/mytodo -h
     ```
     
-    ![CLI start](https://hackmd.io/_uploads/H1-T-YSxJe.png)
+    ![img](https://github.com/user-attachments/assets/32b3159a-1097-4d92-8fbe-e541458a6659)
+
 
 ### Demo
 
