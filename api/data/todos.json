@@ -3,7 +3,7 @@
   {
    "id": 1,
    "owner": "John",
-   "title": "Finish the Go project"
+   "title": "finish the Go project"
   },
   {
    "id": 2,
@@ -12,7 +12,7 @@
   },
   {
    "id": 3,
-   "owner": "john",
+   "owner": "Dev",
    "title": "write Go tests"
   }
  ]

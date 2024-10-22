@@ -11,7 +11,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var updatedItem string
+var updatedData string
 var updateTodoId int
 
 var updateTodo = &cobra.Command{
@@ -23,14 +23,14 @@ var updateTodo = &cobra.Command{
 			log.Println("'id' flag is required")
 			return
 		}
-		if updatedItem == "" {
+		if updatedData == "" {
 			log.Println("'update' flag is required")
 			return
 		}
 
 		// prepare data to send in request
 		data := map[string]string{
-			"title": updatedItem,
+			"title": updatedData,
 		}
 		jsonData, err := json.Marshal(data)
 		if err != nil {
@@ -75,7 +75,7 @@ func init() {
 	*/
 
 	updateTodo.Flags().IntVarP(&updateTodoId, "id", "i", 0, "Id of the todo item (type: number)")
-	updateTodo.Flags().StringVarP(&updatedItem, "update", "", "", "Updated todo item title (type: string)")
+	updateTodo.Flags().StringVarP(&updatedData, "data", "d", "", "Updated todo item data (type: string)")
 
 	rootCmd.AddCommand(updateTodo)
 
