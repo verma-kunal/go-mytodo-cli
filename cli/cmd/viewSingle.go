@@ -59,7 +59,8 @@ var viewSingle = &cobra.Command{
 		result := []string{
 			fmt.Sprint(resp.Id),
 			resp.Owner,
-			resp.Title,
+			*resp.Title,
+			StatusToEmoji(*resp.Status),
 		}
 
 		// format CLI response to table
@@ -68,6 +69,7 @@ var viewSingle = &cobra.Command{
 			"Id",
 			"Owner",
 			"Todo Item",
+			"Status",
 		})
 		table.Append(result)
 		table.Render() // Send output

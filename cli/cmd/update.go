@@ -13,25 +13,33 @@ import (
 
 var updatedData string
 var updateTodoId int
+var todoStatus string
 
 var updateTodo = &cobra.Command{
 	Use:   "update",
-	Short: "Update an existing todo item data",
+	Short: "Update an existing todo item",
 	Run: func(cmd *cobra.Command, args []string) {
 
 		if updateTodoId == 0 {
 			log.Println("'id' flag is required")
 			return
 		}
-		if updatedData == "" {
-			log.Println("'update' flag is required")
+
+		// prepare data to send based on flag
+		data := make(map[string]string)
+		if updatedData != "" { // If not empty, add to map
+			data["title"] = updatedData
+		}
+		if todoStatus != "" { // If not empty, add to map
+			data["status"] = todoStatus
+		}
+
+		// If no data to update, notify the user and exit
+		if len(data) == 0 {
+			log.Println("Either 'data' or 'status' flag must be provided")
 			return
 		}
 
-		// prepare data to send in request
-		data := map[string]string{
-			"title": updatedData,
-		}
 		jsonData, err := json.Marshal(data)
 		if err != nil {
 			log.Fatal(err)
@@ -56,7 +64,7 @@ var updateTodo = &cobra.Command{
 		defer response.Body.Close()
 
 		// Check if the request was successful
-		if response.StatusCode != http.StatusCreated {
+		if response.StatusCode != http.StatusOK {
 			fmt.Printf("Request failed with status: %v\n", response.Status)
 			return
 		}
@@ -69,13 +77,20 @@ var updateTodo = &cobra.Command{
 func init() {
 
 	/*
-		two flags:
+		three flags:
 		1. -i 2
 		2. --item "send postcard"
+		3. --status
 	*/
 
 	updateTodo.Flags().IntVarP(&updateTodoId, "id", "i", 0, "Id of the todo item (type: number)")
 	updateTodo.Flags().StringVarP(&updatedData, "data", "d", "", "Updated todo item data (type: string)")
+	updateTodo.Flags().StringVarP(&todoStatus, "status", "s", "",
+		"Update status of todo item (type: string).\n"+
+			"Supported values:\n"+
+			"  - 'not started' (default)\n"+
+			"  - 'in progress'\n"+
+			"  - 'completed'")
 
 	rootCmd.AddCommand(updateTodo)
 

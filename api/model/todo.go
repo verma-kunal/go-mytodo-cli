@@ -6,7 +6,8 @@ type Todos struct {
 }
 
 type Todo struct {
-	Id         int    `json:"id"`
-	Owner      string `json:"owner"`
-	Title      string `json:"title"`
+	Id     int    `json:"id"`
+	Owner  string `json:"owner"`
+	Title  *string `json:"title"` // changeable as pointer
+	Status *string `json:"status"` // changeable as pointer
 }

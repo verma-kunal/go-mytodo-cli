@@ -52,7 +52,8 @@ var viewAllTodos = &cobra.Command{
 			result = append(result, []string{
 				fmt.Sprint(todo.Id),
 				todo.Owner,
-				todo.Title,
+				*todo.Title,
+				StatusToEmoji(*todo.Status),
 			})
 		}
 
@@ -62,6 +63,7 @@ var viewAllTodos = &cobra.Command{
 			"Id",
 			"Owner",
 			"Todo Item",
+			"Status",
 		})
 		for _, vals := range result {
 			table.Append(vals)
@@ -69,6 +71,19 @@ var viewAllTodos = &cobra.Command{
 		table.Render() // Send output
 
 	},
+}
+
+func StatusToEmoji(status string) string {
+	switch status {
+	case "not started":
+		return "⬜"
+	case "in progress":
+		return "🟨"
+	case "completed":
+		return "✅"
+	default:
+		return "⬜"
+	}
 }
 
 func init() {

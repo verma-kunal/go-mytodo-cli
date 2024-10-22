@@ -58,10 +58,15 @@ func UpdateTodo(c *gin.Context) {
 		fmt.Println(todoId, todo.Id)
 		// id from request matches any existing todo item
 		if todoId == todo.Id {
-			// update title from the original todo list struct
-			todoList.Todos[index].Title = newTodo.Title
 			todoFound = true
-			break
+
+			if newTodo.Title != nil { // when title is present in request
+				*todoList.Todos[index].Title = *newTodo.Title
+			}
+			if newTodo.Status != nil { // when status is present in request
+				*todoList.Todos[index].Status = *newTodo.Status
+			}
+			break // break the loop once the todo is found & updated
 		}
 	}
 
@@ -75,7 +80,9 @@ func UpdateTodo(c *gin.Context) {
 	// re-open the file in write mode with truncation to clear the old content
 	jsonFile, err = os.OpenFile("api/data/todos.json", os.O_WRONLY|os.O_TRUNC, 0644)
 	if err != nil {
-		log.Fatalf("error in opening JSON file")
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Could not open JSON file"})
+		return
+
 	}
 	// defer the closing of the file
 	defer jsonFile.Close()
@@ -89,6 +96,6 @@ func UpdateTodo(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusCreated, gin.H{"message": "todo item updated"})
+	c.JSON(http.StatusOK, gin.H{"message": "todo item updated"})
 
 }
