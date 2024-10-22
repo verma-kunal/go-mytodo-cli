@@ -6,9 +6,12 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"os"
 	"strconv"
 
+	"github.com/olekukonko/tablewriter"
 	"github.com/spf13/cobra"
+	todoModel "github.com/verma-kunal/go-mytodo/api/model"
 )
 
 var singleTodoId int
@@ -45,17 +48,30 @@ var viewSingle = &cobra.Command{
 		}
 		// fmt.Println("pass 3") // for debugging
 
-		// pretty print JSON
-		var prettyJSON interface{}
-		jsonErr := json.Unmarshal(body, &prettyJSON)
+		// parse JSON data
+		var resp todoModel.Todo
+		jsonErr := json.Unmarshal(body, &resp)
 		if jsonErr != nil {
 			log.Fatalf("failed to unmarshal JSON: %v", jsonErr)
 		}
 
-		// fmt.Println("pass 4") // for debugging
+		// convert to []string format
+		result := []string{
+			fmt.Sprint(resp.Id),
+			resp.Owner,
+			resp.Title,
+		}
 
-		formattedJSON, _ := json.MarshalIndent(prettyJSON, "", "   ")
-		fmt.Println(string(formattedJSON))
+		// format CLI response to table
+		table := tablewriter.NewWriter(os.Stdout)
+		table.SetHeader([]string{
+			"Id",
+			"Owner",
+			"Todo Item",
+		})
+		table.Append(result)
+		table.Render() // Send output
+
 	},
 }
 
