@@ -41,7 +41,8 @@ func AddTodo(c *gin.Context) {
 
 	// generate new id for the new todo item (based on the existing todo items)
 	newTodo.Id = len(todoList.Todos) + 1
-	*newTodo.Status = "not started" // default value
+	defaultStatus := "not started"
+	newTodo.Status = &defaultStatus // default value
 
 	// append the new todo item to the list of todos
 	todoList.Todos = append(todoList.Todos, newTodo)

@@ -1,34 +1,34 @@
 {
-  "todos": [
-    {
-      "id": 1,
-      "owner": "John",
-      "title": "complete Go project v1.0",
-      "status": "completed"
-    },
-    {
-      "id": 2,
-      "owner": "Jane",
-      "title": "commit code to GitHub",
-      "status": "in progress"
-    },
-    {
-      "id": 3,
-      "owner": "Dev",
-      "title": "write Go tests",
-      "status": "not started"
-    },
-    {
-      "id": 4,
-      "owner": "kunal",
-      "title": "make a demo video",
-      "status": "in progress"
-    },
-    {
-      "id": 5,
-      "owner": "kunal",
-      "title": "create a new X post",
-      "status": "not started"
-    }
-  ]
+ "todos": [
+  {
+   "id": 1,
+   "owner": "John",
+   "title": "complete Go project v1.0",
+   "status": "completed"
+  },
+  {
+   "id": 2,
+   "owner": "Jane",
+   "title": "commit code to GitHub",
+   "status": "in progress"
+  },
+  {
+   "id": 3,
+   "owner": "Dev",
+   "title": "write Go tests",
+   "status": "not started"
+  },
+  {
+   "id": 4,
+   "owner": "kunal",
+   "title": "make a demo video",
+   "status": "in progress"
+  },
+  {
+   "id": 5,
+   "owner": "kunal",
+   "title": "create a new X post",
+   "status": "not started"
+  }
+ ]
 }
